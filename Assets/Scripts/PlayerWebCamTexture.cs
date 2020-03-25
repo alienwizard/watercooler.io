@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerWebCamTexture : MonoBehaviour
 {
@@ -9,8 +10,11 @@ public class PlayerWebCamTexture : MonoBehaviour
     {
         WebCamTexture webcamTexture = new WebCamTexture();
         GetComponent<Renderer>().material.mainTexture = webcamTexture;
-        webcamTexture.requestedFPS = 60f;
-        webcamTexture.Play();
+        webcamTexture.requestedFPS = 30f;
+        if (!Application.isEditor)
+        {
+            webcamTexture.Play();
+        }
     }
 
     private void Update()
