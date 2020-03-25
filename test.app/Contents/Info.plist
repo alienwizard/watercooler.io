@@ -35,6 +35,8 @@
       <key>NSAllowsArbitraryLoads</key>
       <true />
     </dict>
+    <key>NSCameraUsageDescription</key>
+    <string>Used as texture on player</string>
     <key>NSMainNibFile</key>
     <string>MainMenu</string>
     <key>NSPrincipalClass</key>

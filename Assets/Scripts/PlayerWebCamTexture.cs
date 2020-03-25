@@ -9,7 +9,8 @@ public class PlayerWebCamTexture : MonoBehaviour
     {
         WebCamTexture webcamTexture = new WebCamTexture();
         GetComponent<Renderer>().material.mainTexture = webcamTexture;
-        // webcamTexture.Play();
+        webcamTexture.requestedFPS = 60f;
+        webcamTexture.Play();
     }
 
     private void Update()
