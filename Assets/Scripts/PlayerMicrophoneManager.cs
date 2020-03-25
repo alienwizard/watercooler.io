@@ -6,19 +6,28 @@ public class PlayerMicrophoneManager : MonoBehaviour
 {
     private string microphone;
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
-        foreach (var device in Microphone.devices)
-        {
-            Debug.Log("Name: " + device);
-        }
-
         if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
             // we need to ask for premission when web
+            yield return Application.RequestUserAuthorization(UserAuthorization.Microphone);
+            if (Application.HasUserAuthorization(UserAuthorization.Microphone))
+            {
+                Debug.Log("webcam found");
+                startBroadCast();
+
+            }
             Debug.Log("WebGL");
         }
+        else
+        {
+            startBroadCast();
+        }
+    }
 
+    void startBroadCast()
+    {
         AudioSource audioSource = GetComponent<AudioSource>();
         microphone = Microphone.devices[0];
         audioSource.clip = Microphone.Start(microphone, true, 10, 22050);
@@ -31,11 +40,6 @@ public class PlayerMicrophoneManager : MonoBehaviour
     void Update()
     {
 
-    }
-
-    private void OnDestroy()
-    {
-        Microphone.End(microphone);
     }
     /*
         void FixedUpdate()

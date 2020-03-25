@@ -36,12 +36,12 @@ public class PlayerCharacterController : NetworkBehaviour
 
     private void handleCamera(Transform character, Transform camera)
     {
-        mouseX = Input.GetAxis("Mouse X") * 2f;
-        mouseY = Input.GetAxis("Mouse Y") * 2f;
+        mouseX = Input.GetAxis("Mouse X") * 10f;
+        mouseY = Input.GetAxis("Mouse Y") * 10f;
         // Debug.Log(mouseX + ":" + mouseY);
-        character.localRotation *= Quaternion.Euler(0f, mouseY, 0f);
-        camera.localRotation *= Quaternion.Euler(-mouseX, 0f, 0f);
-        // camera.localRotation = ClampRotationAroundXAxis(camera.localRotation);
+        character.localRotation *= Quaternion.Euler(0f, mouseX, 0f);
+        camera.localRotation *= Quaternion.Euler(-mouseY, 0f, 0f);
+        camera.localRotation = ClampRotationAroundXAxis(camera.localRotation);
     }
 
     //Copied this from the internet
