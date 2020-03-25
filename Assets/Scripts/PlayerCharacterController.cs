@@ -31,10 +31,10 @@ public class PlayerCharacterController : MonoBehaviour
     {
         mouseX = Input.GetAxis("Mouse X") * 2f;
         mouseY = Input.GetAxis("Mouse Y") * 2f;
-        Debug.Log(mouseX + ":" + mouseY);
+        // Debug.Log(mouseX + ":" + mouseY);
         character.localRotation *= Quaternion.Euler(0f, mouseY, 0f);
         camera.localRotation *= Quaternion.Euler(-mouseX, 0f, 0f);
-        camera.localRotation = ClampRotationAroundXAxis(camera.localRotation);
+        // camera.localRotation = ClampRotationAroundXAxis(camera.localRotation);
     }
 
     //Copied this from the internet

@@ -360,7 +360,7 @@ PlayerSettings:
   enableCrashReportAPI: 0
   cameraUsageDescription: Used as texture on player
   locationUsageDescription: 
-  microphoneUsageDescription: 
+  microphoneUsageDescription: Used for in game chat
   switchNetLibKey: 
   switchSocketMemoryPoolSize: 6144
   switchSocketAllocatorPoolSize: 128

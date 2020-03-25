@@ -39,6 +39,8 @@
     <string>Used as texture on player</string>
     <key>NSMainNibFile</key>
     <string>MainMenu</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Used for in game chat</string>
     <key>NSPrincipalClass</key>
     <string>PlayerApplication</string>
     <key>UnityBuildNumber</key>
