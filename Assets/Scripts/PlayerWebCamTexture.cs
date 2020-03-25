@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Mirror;
 
-public class PlayerWebCamTexture : MonoBehaviour
+public class PlayerWebCamTexture : NetworkBehaviour
 {
     // Start is called before the first frame update
     void Start()

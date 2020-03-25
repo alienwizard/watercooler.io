@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+using Mirror;
 
 public class PlayerCharacterController : NetworkBehaviour
 {
@@ -29,12 +29,6 @@ public class PlayerCharacterController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (!isLocalPlayer)
-        {
-            // exit from update if this is not the local player
-            return;
-        }
         Camera camera = GetComponentInChildren<Camera>();
         handleCamera(transform, camera.transform);
         handleMovement();

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -13,6 +14,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();

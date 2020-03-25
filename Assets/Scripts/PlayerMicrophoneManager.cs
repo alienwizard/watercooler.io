@@ -24,7 +24,7 @@ public class PlayerMicrophoneManager : MonoBehaviour
         audioSource.clip = Microphone.Start(microphone, true, 10, 22050);
         while (!(Microphone.GetPosition(microphone) > 0)) { }
         audioSource.Play();
-        Debug.Log("start playing... position is " + Microphone.GetPosition(null));
+        Debug.Log("start playing... position is " + Microphone.GetPosition(microphone));
     }
 
     // Update is called once per frame
