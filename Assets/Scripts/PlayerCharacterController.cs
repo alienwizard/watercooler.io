@@ -1,17 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerCharacterController : MonoBehaviour
+public class PlayerCharacterController : NetworkBehaviour
 {
-    public float walkSpeed = 5.0F;
-    public float jumpHeight = 10.0F;
-    public float gravity = 20.0F;
 
+    private float walkSpeed = 5.0F;
+    private float jumpHeight = 10.0F;
+    private float gravity = 20.0F;
+    [SerializeField]
     private Vector3 moveDirection = Vector3.zero;
+    [SerializeField]
     private Vector3 rotateValue;
+    [SerializeField]
     private Quaternion rotation;
+    [SerializeField]
     private float mouseX;
+    [SerializeField]
     private float mouseY;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +29,12 @@ public class PlayerCharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (!isLocalPlayer)
+        {
+            // exit from update if this is not the local player
+            return;
+        }
         Camera camera = GetComponentInChildren<Camera>();
         handleCamera(transform, camera.transform);
         handleMovement();
