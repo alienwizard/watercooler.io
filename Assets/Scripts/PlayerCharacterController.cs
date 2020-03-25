@@ -37,6 +37,7 @@ public class PlayerCharacterController : MonoBehaviour
         camera.localRotation = ClampRotationAroundXAxis(camera.localRotation);
     }
 
+    //Copied this from the internet
     Quaternion ClampRotationAroundXAxis(Quaternion q)
     {
         q.x /= q.w;
