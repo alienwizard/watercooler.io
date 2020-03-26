@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-
 public class PlayerCharacterController : NetworkBehaviour
 {
 
@@ -23,12 +22,17 @@ public class PlayerCharacterController : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        GetComponentInChildren<Camera>().enabled = isLocalPlayer;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         Camera camera = GetComponentInChildren<Camera>();
         handleCamera(transform, camera.transform);
         handleMovement();
