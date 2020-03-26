@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class PlayerMicrophoneManager : MonoBehaviour
+public class PlayerMicrophoneManager : NetworkBehaviour
 {
     private string microphone;
+    private NetworkIdentity networkIdentity;
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        networkIdentity = GetComponentInParent<NetworkIdentity>();
         if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
             // we need to ask for premission when web
@@ -22,7 +25,11 @@ public class PlayerMicrophoneManager : MonoBehaviour
         }
         else
         {
-            startBroadCast();
+            if (isLocalPlayer)
+            {
+
+                startBroadCast();
+            }
         }
     }
 
