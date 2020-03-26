@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using Mirror.;
+using Mirror;
 
 public class PlayerWebCamTexture : NetworkBehaviour
 {
-    // Start is called before the first frame update
+    public Quaternion baseRotation;
+    private WebCamTexture webcamTexture;
+    public Texture testTexture;
+
     void Start()
     {
         NetworkIdentity identity = GetComponentInParent<NetworkIdentity>();
@@ -15,19 +18,18 @@ public class PlayerWebCamTexture : NetworkBehaviour
             WebCamTexture webcamTexture = new WebCamTexture();
             Texture texture = GetComponent<Renderer>().material.mainTexture;
             texture = webcamTexture;
+            baseRotation = transform.rotation;
 
             webcamTexture.requestedFPS = 30f;
             if (!Application.isEditor)
             {
                 webcamTexture.Play();
             }
+            else
+            {
+                texture = testTexture;
+            }
         }
 
     }
-
-    private void Update()
-    {
-
-    }
-
 }

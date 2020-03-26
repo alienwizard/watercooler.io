@@ -532,6 +532,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  baseRotation: {x: 0, y: 0, z: 0, w: 0}
+  testTexture: {fileID: 10900, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1001 &8739642992616692956
 PrefabInstance:
   m_ObjectHideFlags: 0
