@@ -6,30 +6,30 @@ using Mirror;
 
 public class PlayerWebCamTexture : NetworkBehaviour
 {
+    public WebCamTexture webcamTexture;
     public Quaternion baseRotation;
-    private WebCamTexture webcamTexture;
-    public Texture testTexture;
-
+    // Start is called before the first frame update
     void Start()
     {
         NetworkIdentity identity = GetComponentInParent<NetworkIdentity>();
         if (identity.isLocalPlayer)
         {
-            WebCamTexture webcamTexture = new WebCamTexture();
-            Texture texture = GetComponent<Renderer>().material.mainTexture;
-            texture = webcamTexture;
+            webcamTexture = new WebCamTexture();
+            GetComponent<Renderer>().material.mainTexture = webcamTexture;
             baseRotation = transform.rotation;
-
             webcamTexture.requestedFPS = 30f;
+
             if (!Application.isEditor)
             {
                 webcamTexture.Play();
             }
-            else
-            {
-                texture = testTexture;
-            }
         }
 
     }
+
+    private void Update()
+    {
+        transform.rotation = baseRotation * Quaternion.AngleAxis(webcamTexture.videoRotationAngle, Vector3.up);
+    }
+
 }
