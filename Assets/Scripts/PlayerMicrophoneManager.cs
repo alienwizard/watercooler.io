@@ -7,6 +7,9 @@ public class PlayerMicrophoneManager : NetworkBehaviour
 {
     private string microphone;
     private NetworkIdentity networkIdentity;
+
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     IEnumerator Start()
     {
@@ -17,7 +20,6 @@ public class PlayerMicrophoneManager : NetworkBehaviour
             yield return Application.RequestUserAuthorization(UserAuthorization.Microphone);
             if (Application.HasUserAuthorization(UserAuthorization.Microphone))
             {
-                Debug.Log("webcam found");
                 startBroadCast();
 
             }
@@ -35,17 +37,39 @@ public class PlayerMicrophoneManager : NetworkBehaviour
 
     void startBroadCast()
     {
-        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         microphone = Microphone.devices[0];
-        audioSource.clip = Microphone.Start(microphone, true, 10, 22050);
+        audioSource.clip = Microphone.Start(microphone, true, 5, 22050);
         while (!(Microphone.GetPosition(microphone) > 0)) { }
-        audioSource.Play();
+        // audioSource.Play();
+        AudioClip clip = audioSource.clip;
+        // RpcplaySound();
+        CmdSendServerSound();
         Debug.Log("start playing... position is " + Microphone.GetPosition(microphone));
+    }
+
+    [Command]
+    void CmdSendServerSound()
+    {
+        // RpcplaySound(audio);
+        audioSource.Play();
+
+    }
+
+    [ClientRpc]
+    void RpcplaySound()
+    {
+        audioSource.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!Microphone.IsRecording(microphone))
+        {
+            audioSource.clip = Microphone.Start(microphone, true, 5, 22050);
+            CmdSendServerSound();
+        }
 
     }
     /*
