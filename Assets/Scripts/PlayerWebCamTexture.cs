@@ -25,12 +25,7 @@ public class PlayerWebCamTexture : NetworkBehaviour
         head.GetComponent<Renderer>().material.mainTexture = webcamTexture;
         baseRotation = transform.rotation;
         webcamTexture.requestedFPS = 30f;
-
-        if (!Application.isEditor)
-        {
-            webcamTexture.Play();
-        }
-
+        webcamTexture.Play();
 
     }
 
